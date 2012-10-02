@@ -45,19 +45,31 @@ public class erratique extends beta {
 			{
 				Vector<Integer> a= new Vector();
 				a.add(a1);a.add(a2);a.add(a3);a.add(a4);a.add(a5);a.add(a6);a.add(a7);a.add(a8);
-				int r=(int)(Math.random()*(somme-1));
+				int r=(int)(Math.random()*somme);
 				System.out.println(r+","+somme);
 				int p=0,i=0;
 				while(p==0){
 					if((r==0) && (a.get(i)!=0)){
 						p=1;
-						
+						System.out.println("case:"+i);
+						this.cases(i);
 					}
 					else{
 						if(a.get(i)!=0){r=r-1;}
 					}
+					i++;
 				}
 				this.energie=this.energie-1;
 			}
+	}
+	public void cases(int i){
+		if(i==0){h=h+1;w=w-1;}
+		if(i==1){h=h+1;}
+		if(i==2){h=h+1;w=w+1;}
+		if(i==3){w=w-1;}
+		if(i==4){w=w+1;}
+		if(i==5){h=h-1;w=w-1;}
+		if(i==6){h=h-1;}
+		if(i==7){h=h-1;w=w+1;}
 	}
 }
