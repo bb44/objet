@@ -13,7 +13,7 @@ public class food {
 		if(t==1){
 		quantite=5;energie=2;}
 		if(t==2){
-		quantite=10;energie=5;}
+		quantite=2;energie=5;}
 		
 	}
 }

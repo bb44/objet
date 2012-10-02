@@ -51,10 +51,14 @@ public class Saison1 {
 	public void primeTime2() {
 		ZoneGraphique zone = new ZoneGraphique("Mon premier loft");
 		Loft loft = new Loft(tailleLoft,zone);
-		//pas de bouffe dans ce test
+		loft.remplissageAleatoire(0.1f);
+		System.out.println(loft.nourriture.size()+","+loft.nourriture.get(0).h+","+loft.nourriture.get(0).w);
+		loft.AfficherFood();
+		
 		//2 erratique en place
-		loft.add(new erratique(loft,0,0,4));
-		loft.add(new erratique(loft,tailleLoft-1,tailleLoft-1,4));
+		loft.add(new erratique(loft,0,0,10));
+		loft.add(new erratique(loft,tailleLoft-1,tailleLoft-1,10));
+		loft.add(new vorace(loft,0,tailleLoft-1,10));
 		loft.go();
 	}
 	

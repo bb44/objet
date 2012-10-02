@@ -11,12 +11,15 @@ public class erratique extends beta {
 	}
 	public int accessible(int a,int b){//a faire
 		int r=1;
-		
+		if(a<0){r=0;}
+		if(a>l.taille-1){r=0;}
+		if(b<0){r=0;}
+		if(b>l.taille-1){r=0;}
 		return r;
 	}
 	
 	public void deplacer(){
-		System.out.println("deplacement depuis ("+h+","+w+")");
+		//System.out.println("deplacement depuis ("+h+","+w+")");
 		//8 cases 
 		//0 si la case est hors du loft
 		//sinon verifier l'acces avec la fonction accessibilite
@@ -37,7 +40,7 @@ public class erratique extends beta {
 		if(a6!=0){a6=this.accessible(h+1,w-1);}
 		if(a7!=0){a7=this.accessible(h+1,w);}
 		if(a8!=0){a8=this.accessible(h+1,w+1);}
-		System.out.println("a1="+a1+" a2="+a2+" a3="+a3+" a4="+a4+" a5="+a5+" a6="+a6+" a7="+a7+" a8="+a8);
+		//System.out.println("a1="+a1+" a2="+a2+" a3="+a3+" a4="+a4+" a5="+a5+" a6="+a6+" a7="+a7+" a8="+a8);
 		int somme=a1+a2+a3+a4+a5+a6+a7+a8;
 		
 		if(somme==0){this.energie=this.energie-1;}
@@ -46,12 +49,12 @@ public class erratique extends beta {
 				Vector<Integer> a= new Vector();
 				a.add(a1);a.add(a2);a.add(a3);a.add(a4);a.add(a5);a.add(a6);a.add(a7);a.add(a8);
 				int r=(int)(Math.random()*somme);
-				System.out.println(r+","+somme);
+				//System.out.println(r+","+somme);
 				int p=0,i=0;
 				while(p==0){
 					if((r==0) && (a.get(i)!=0)){
 						p=1;
-						System.out.println("case:"+i);
+						//System.out.println("case:"+i);
 						this.cases(i);
 					}
 					else{

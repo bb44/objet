@@ -30,18 +30,44 @@ public class Loft   {
 	}
 	
 	public void remplissageAleatoire(float p){//0<p<1
+		int e=1;
 		for(int i=0;i<taille;i++){
 			for(int j=0;j<taille;j++){
-				if(Math.random()<p){
+				if((Math.random())<p){
 					//mettre de la nourriture non humaine dans la case
 					int r=1;
-					if(Math.random()>0.8){r=2;}
+					if((Math.random())>0.8){r=2;}
 					food n=new food(i,j,r);
-					nourriture.add(n);
+					nourriture.add(n);e=0;
 				}
 			}
 		}
 	}
+	
+	public void AfficherFood(){
+		int[][] matrice=new int[taille][taille];
+		int i,j;
+	//initialisation
+		for(i=0;i<taille;i++){
+			for(j=0;j<taille;j++){
+				matrice[i][j]=0;
+			}	
+		}
+		//intergration des donnee
+for(i=0;i<nourriture.size();i++){
+			matrice[nourriture.get(i).h][nourriture.get(i).w]=nourriture.get(i).quantite;
+			
+		}
+//affichage
+String a;
+	for(i=0;i<taille;i++){
+		a="";
+		for(j=0;j<taille;j++){
+			a=a+matrice[i][j];
+		}	
+	System.out.println(a);
+	}
+}
 	
 	public void go(){
 		//on compte le nombre de joueur
