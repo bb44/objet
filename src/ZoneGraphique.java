@@ -49,7 +49,7 @@ public class ZoneGraphique extends JFrame {
 		LoftPanel a = new LoftPanel(liste);
 		getContentPane().add(a);
 		
-		setVisible(true);
+		//setVisible(true);
 	}
 	
 	/**
