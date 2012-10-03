@@ -11,16 +11,16 @@ public class vorace extends erratique{
 	
 	
 	public void deplacer(){
-		System.out.println("deplacement depuis ("+h+","+w+")");
+		//System.out.println("deplacement depuis ("+h+","+w+")");
 		int n=0;
 		//on parcours la nourriture pour trouver le site le plus proche
 		int e=this.ProximiterFood();
-		System.out.println("food:"+e);
+		//System.out.println("food:"+e);
 		if(e>-1){
-			System.out.println("recherche");
+			//System.out.println("recherche");
 			int x=h-l.nourriture.get(e).h;
 			int y=w-l.nourriture.get(e).w;
-			System.out.println("vecteur: "+x+","+y);
+			//System.out.println("vecteur: "+x+","+y);
 			int x1=h,y1=w;
 			if(x<0){x1=h+1;}
 			if(x==0){x1=h;}
@@ -28,7 +28,7 @@ public class vorace extends erratique{
 			if(y<0){y1=w+1;}
 			if(y==0){y1=w;}
 			if(y>0){y1=w-1;}
-			System.out.println("position souhaitée: "+x1+","+y1);
+			//System.out.println("position souhaitée: "+x1+","+y1);
 			if(this.accessible(x1,y1)==1){
 				h=x1;w=y1;n=1;this.energie=this.energie-1;
 			}
@@ -47,7 +47,7 @@ public class vorace extends erratique{
 		if(a6!=0){a6=this.accessible(h-1,w-1);}
 		if(a7!=0){a7=this.accessible(h-1,w);}
 		if(a8!=0){a8=this.accessible(h-1,w+1);}
-		System.out.println("a1="+a1+" a2="+a2+" a3="+a3+" a4="+a4+" a5="+a5+" a6="+a6+" a7="+a7+" a8="+a8);
+		//System.out.println("a1="+a1+" a2="+a2+" a3="+a3+" a4="+a4+" a5="+a5+" a6="+a6+" a7="+a7+" a8="+a8);
 		int somme=a1+a2+a3+a4+a5+a6+a7+a8;
 		
 		if(somme==0){this.energie=this.energie-1;}
@@ -56,12 +56,12 @@ public class vorace extends erratique{
 				Vector<Integer> a= new Vector();
 				a.add(a1);a.add(a2);a.add(a3);a.add(a4);a.add(a5);a.add(a6);a.add(a7);a.add(a8);
 				int r=(int)(Math.random()*somme);
-				System.out.println(r+","+somme);
+				//System.out.println(r+","+somme);
 				int p=0,i=0;
 				while(p==0){
 					if((r==0) && (a.get(i)!=0)){
 						p=1;
-						System.out.println("case:"+i);
+					//	System.out.println("case:"+i);
 						this.cases(i);
 					}
 					else{
@@ -92,10 +92,12 @@ return r;
 		for(int i=0;i<l.nourriture.size();i++){
 			if((l.nourriture.get(i).h==h)&&(l.nourriture.get(i).w==w)){
 				int a=(int)(Math.random()*(l.nourriture.get(i).quantite)+1);
-				System.out.println("quantite consommer: "+a+" energie: "+l.nourriture.get(i).energie);
+				//System.out.println("quantite consommer: "+a+" energie: "+l.nourriture.get(i).energie);
 				this.energie=this.energie+l.nourriture.get(i).consommer(a);
-				if(l.nourriture.get(i).quantite==0){l.nourriture.remove(i);System.out.println("quantite consommer: totalite");}
-				else{System.out.println("nourriture restante: "+l.nourriture.get(i).quantite);}
+				if(l.nourriture.get(i).quantite==0){l.nourriture.remove(i);//System.out.println("quantite consommer: totalite");
+				}
+				else{//System.out.println("nourriture restante: "+l.nourriture.get(i).quantite);
+				}
 			}
 		}
 		//reproduction

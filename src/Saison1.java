@@ -11,58 +11,33 @@ public class Saison1 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new Saison1().primeTime2();
+		new Saison1().primeTime();
 	}
 	
+	
 	public void primeTime() {
-		ZoneGraphique zone = new ZoneGraphique("Mon premier loft");
-		Loft loft = new Loft(tailleLoft,zone);
-		//remplissageAleatoire(a) a est la probabilite que de la nourriture soit sur une case au debut
-		//de la partie
-		loft.remplissageAleatoire(0.1f);
-		//zone.ajouterObjet(loft);
-		/*
-		for (int i=0 ; i<nombreLofteurs ; i++) {
-			double x = Math.random();
-			if (x<proportionVorace) {
-				loft.add(new vorace(loft,(int)(Math.random()*29),(int)(Math.random()*29),3));
-			}
-			else {
-				x -= proportionVorace;
-				if (x<proportionErratique) {
-					loft.add(new erratique(loft,
-							(int)(Math.random()*29),
-							(int)(Math.random()*29),4));
-				}
-				else {
-					x -= proportionErratique;
-					if (x<proportionCannibale) {
-						loft.add(new cannibale(loft,
-						(int)(Math.random()*29),
-						(int)(Math.random()*29),
-						5));
-					}
-				}
-			}
-		}
-		*/
-		loft.go();
-	}
-	public void primeTime2() {
-		ZoneGraphique zone = new ZoneGraphique("Mon premier loft");
-		Loft loft = new Loft(tailleLoft,zone);
+		
+		Loft loft = new Loft(tailleLoft);
+	
 		loft.remplissageAleatoire(0.1f);
 		loft.mettreLofteur(nombreLofteurs);
-		System.out.println(loft.nourriture.size()+","+loft.nourriture.get(0).h+","+loft.nourriture.get(0).w);
 		loft.AfficherFood();
 		loft.AfficherLofteur();
+		ZoneGraphique zone = new ZoneGraphique(loft);
 		/*
 		//2 erratique en place
 		loft.add(new erratique(loft,0,0,30));
 		loft.add(new vorace(loft,tailleLoft-1,tailleLoft-1,30));
 		loft.add(new cannibale(loft,0,tailleLoft-1,30));
 		loft.add(new lapin(loft,tailleLoft-1,0,30));*/
-		loft.go();
+		int r=1;
+		while(r==1){
+		 r=loft.go();
+		 zone.set(loft);
+		 zone.dessiner();
+		}
+		loft.AfficherFood();
+		loft.AfficherLofteur();
 	}
 	
 	

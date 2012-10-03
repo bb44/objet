@@ -22,20 +22,21 @@ public class cannibale extends vorace {
 		//0 acces autorise 
 		// 
 		for(int i=0; i<l.lofteur.size();i++){
-			if((l.lofteur.get(i).h==a)&&(l.lofteur.get(i).w==b)){p=p+1;j=i;System.out.println("neuneu en ("+a+","+b+")");}
+			if((l.lofteur.get(i).h==a)&&(l.lofteur.get(i).w==b)){p=p+1;j=i;//System.out.println("neuneu en ("+a+","+b+")");
+			}
 		}
 		if(p>1){r=0;}
 		
 		return r;
 	}
 	public void deplacer(){
-		System.out.println("deplacement depuis ("+h+","+w+")");
+		//System.out.println("deplacement depuis ("+h+","+w+")");
 		int n=0;
 		//on parcours la nourriture pour trouver le site le plus proche
 		int e=this.ProximiterFood();
 		
 		if(e>-1){
-			System.out.println("recherche");
+			//System.out.println("recherche");
 			Vector<food> z=new Vector();
 			//creer un tableau de nourriture mixte
 			for(int i=0;i<l.nourriture.size();i++){
@@ -46,7 +47,7 @@ public class cannibale extends vorace {
 			}
 			int x=h-z.get(e).h;
 			int y=w-z.get(e).w;
-			System.out.println("vecteur: "+x+","+y);
+			//System.out.println("vecteur: "+x+","+y);
 			int x1=h,y1=w;
 			if(x<0){x1=h+1;}
 			if(x==0){x1=h;}
@@ -54,7 +55,7 @@ public class cannibale extends vorace {
 			if(y<0){y1=w+1;}
 			if(y==0){y1=w;}
 			if(y>0){y1=w-1;}
-			System.out.println("position souhaitée: "+x1+","+y1);
+			//System.out.println("position souhaitée: "+x1+","+y1);
 			if(this.accessible(x1,y1)==1){
 				h=x1;w=y1;n=1;this.energie=this.energie-1;
 			}
@@ -74,7 +75,7 @@ public class cannibale extends vorace {
 		if(a6!=0){a6=this.accessible(h-1,w-1);}
 		if(a7!=0){a7=this.accessible(h-1,w);}
 		if(a8!=0){a8=this.accessible(h-1,w+1);}
-		System.out.println("a1="+a1+" a2="+a2+" a3="+a3+" a4="+a4+" a5="+a5+" a6="+a6+" a7="+a7+" a8="+a8);
+		//System.out.println("a1="+a1+" a2="+a2+" a3="+a3+" a4="+a4+" a5="+a5+" a6="+a6+" a7="+a7+" a8="+a8);
 		int somme=a1+a2+a3+a4+a5+a6+a7+a8;
 		
 		if(somme==0){this.energie=this.energie-1;}
@@ -83,12 +84,12 @@ public class cannibale extends vorace {
 				Vector<Integer> a= new Vector();
 				a.add(a1);a.add(a2);a.add(a3);a.add(a4);a.add(a5);a.add(a6);a.add(a7);a.add(a8);
 				int r=(int)(Math.random()*somme);
-				System.out.println(r+","+somme);
+				//System.out.println(r+","+somme);
 				int p=0,i=0;
 				while(p==0){
 					if((r==0) && (a.get(i)!=0)){
 						p=1;
-						System.out.println("case:"+i);
+						//System.out.println("case:"+i);
 						this.cases(i);
 					}
 					else{
@@ -138,14 +139,21 @@ return r;
 		for(int i=0;i<z.size();i++){
 			if((z.get(i).h==h)&&(z.get(i).w==w)){
 				int a=(int)(Math.random()*(z.get(i).quantite)+1);
-				System.out.println("quantite consommer: "+a+"/"+z.get(i).quantite);
-				this.energie=this.energie+z.get(i).consommer(a);System.out.println("quantite restante: "+z.get(i).quantite);
+				//System.out.println("quantite consommer: "+a+"/"+z.get(i).quantite);
+				this.energie=this.energie+z.get(i).consommer(a);//System.out.println("quantite restante: "+z.get(i).quantite);
 				if(z.get(i).quantite==0){
 					int m=z.get(i).Typage();
-					if(m==0){l.nourriture.remove(i);System.out.println("quantite consommer: totalite");}
-					else{l.lofteur.remove(i-l.nourriture.size());System.out.println("humain consommer!!! ");}
+					if(m==0){l.nourriture.remove(i);//System.out.println("quantite consommer: totalite");
+					}
+					else{//System.out.println("i="+i+" et reste de food="+l.nourriture.size()+" position: ("+z.get(i).h+","+z.get(i).w+") et nombre de participant"+l.lofteur.size());
+					for(int j=0;j<l.lofteur.size();j++){
+						
+					if((z.get(i).h==h)&&(z.get(i).w==w)){l.lofteur.remove(j);//System.out.println("humain consommer!!! ");
+					}
+					}
 				}	
 			}
+		}
 		}
 		//reproduction
 		int p=0;

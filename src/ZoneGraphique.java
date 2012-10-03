@@ -1,76 +1,93 @@
 
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.LinkedList;
-
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Graphics;
+public class ZoneGraphique extends JFrame{
 
-/**
- * une classe comportant une zone graphique dans laquelle on peut dessiner ;
- * le dessin est refait automatiquement par la classe Panel associée ; tous
- * les objets de type ObjetDessinable ajoutés à la liste sont redessinés par 
- * un appel à leur méthode dessinerObjet(Graphics g)
- * 
- * @see ObjectDessinable,LoftPanel
- * @author moreau
- *
- */
-public class ZoneGraphique extends JFrame {
+	public Loft l;
+	
+   public ZoneGraphique(Loft v){
+	   l=v;
+     	this.dessiner();	
+   }
 
-	/**
-	 * la liste d'objets à dessiner
-	 */
-	LinkedList<ObjetDessinable> liste;
-	
-	/**
-	 * constructeur
-	 *
-	 * @param titre le nom de l'application
-	 */
-	public ZoneGraphique(String titre)  {
-		// appel au constructeur de base
-		super(titre);
+   public void set(Loft loft){
+	   l=loft;
+   }
+   public void dessiner(){
+	   this.setTitle("Loft par Brice Le Dain");
+	      this.setSize(1400, 900);
+	      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      this.setLocationRelativeTo(null);
+	      
+	     
+	      
+	      
+			
+	      //Le conteneur principal
+	      JPanel content = new JPanel();
+	      content.setPreferredSize(new Dimension(1400, 900));
+	      content.setBackground(Color.WHITE);
+	      //On définit le layout manager
+	      content.setLayout(new GridBagLayout());
+	      //L'objet servant à positionner les composants
+	      GridBagConstraints gbc = new GridBagConstraints();
+			
+	      //matrice food
+	  	int[][] matrice=new int[l.taille][l.taille];
 		
-		// ajout d'une taille par défaut
-		setSize(600,600);
-		
-		// création de la liste d'objets
-		liste = new LinkedList<ObjetDessinable>();
-		
-		// ajout d'un listener
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				System.exit(0) ;
-			}
-	    	} ) ;
-
-		// création du panneau
-		LoftPanel a = new LoftPanel(liste);
-		getContentPane().add(a);
-		
-		//setVisible(true);
+	//initialisation
+		for(int i=0;i<l.taille;i++){
+			for(int j=0;j<l.taille;j++){
+				matrice[i][j]=-1;
+			}	
+		}
+		//intergration des donnee
+	for(int i=0;i<l.nourriture.size();i++){
+			matrice[l.nourriture.get(i).h][l.nourriture.get(i).w]=l.nourriture.get(i).type;
+			
+		}
+	      //matrice lofteur
+		int[][] matrice2=new int[l.taille][l.taille];
+		System.out.println("part: "+l.lofteur.size());
+	//initialisation
+	for(int i=0;i<l.taille;i++){
+		for(int j=0;j<l.taille;j++){
+			matrice2[i][j]=0;
+		}	
 	}
-	
-	/**
-	 * ajout d'un objet dans la zone graphique
-	 */
-	void ajouterObjet(ObjetDessinable o) {
-		liste.add(o);
+	//intergration des donnee
+	for(int i=0;i<l.lofteur.size();i++){
+		if(l.lofteur.get(i).genre=="erratique"){matrice2[l.lofteur.get(i).h][l.lofteur.get(i).w]=1;}
+		if(l.lofteur.get(i).genre=="vorace"){matrice2[l.lofteur.get(i).h][l.lofteur.get(i).w]=2;}
+		if(l.lofteur.get(i).genre=="cannibale"){matrice2[l.lofteur.get(i).h][l.lofteur.get(i).w]=3;}
+		if(l.lofteur.get(i).genre=="lapin"){matrice2[l.lofteur.get(i).h][l.lofteur.get(i).w]=4;}
 	}
-	
-	/**
-	 * largeur de la partie dessinable
-	 */
-	public int getWidth() {
-		return getContentPane().getWidth();
-	}
-	
-	/**
-	 * hauteur de la partie dessinable
-	 */
-	public int getHeight() {
-		return getContentPane().getHeight();
-	}
-	
+	      //La taille en hauteur et en largeur
+	      gbc.gridheight = 1;
+	      gbc.gridwidth = 1;
+	      
+	    for(int i=0;i<30;i++){
+	    	for(int j=0;j<30;j++){
+	    		   //On positionne la case du composant
+	    		gbc.gridx = i;
+	    	    gbc.gridy = j;
+	    	    //on ajoute la cellule au conteneur
+	    	    Panneau cell=new Panneau();
+	    	    cell.n=matrice[j][i];
+	    	    cell.p=matrice2[j][i];
+	    	    cell.setPreferredSize(new Dimension(40, 25));	
+	    	    content.add(cell, gbc);
+	        }
+	    }
+	      //On ajoute le conteneur
+	      this.setContentPane(content);
+	      this.setVisible(true);
+   }
 }

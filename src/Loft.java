@@ -4,10 +4,10 @@ public class Loft   {
 	public  int taille;
 	public  Vector<food> nourriture;
 	public Vector<beta> lofteur;
-	public ZoneGraphique Area;
 	
-	public Loft(int t, ZoneGraphique z){
-		Area=z;
+	
+	public Loft(int t){
+		
 		taille=t;
 		nourriture=new Vector();
 		lofteur=new Vector();	
@@ -36,9 +36,13 @@ public class Loft   {
 				if((Math.random())<p){
 					//mettre de la nourriture non humaine dans la case
 					int r=1;
-					if((Math.random())>0.8){r=2;}
-					food n=new food(i,j,r);
-					nourriture.add(n);e=0;
+					if((Math.random())>0.8){r=2;
+						if((Math.random())>0.8){r=0;}
+					}
+					if(r>0){
+					food n=new food(i,j,r);nourriture.add(n);e=0;}
+					else{alcool n=new alcool(i,j);nourriture.add(n);e=0;}
+					
 				}
 			}
 		}
@@ -75,24 +79,26 @@ String a;
 		}
 	}
 	
-	public void go(){
+	public int  go(){
+		int r=1;
 		//on compte le nombre de joueur
 		if(this.lofteur.size()>1){
 			//retirer le premier joueur
 			
 				beta b = this.lofteur.get(0);
-				System.out.println("tour de "+b.genre);
+				//System.out.println("tour de "+b.genre);
 				this.lofteur.remove(0);
 				if(b.energie>0){b.deplacer();}else{	System.out.println("KIA");}
 				if(b.energie>0){b.action();this.lofteur.add(b);}else{	System.out.println("KIA");}
-				System.out.println("mvt en ("+b.h+","+b.w+") il reste "+b.energie+" energie");
-				System.out.println("nombre de particitant: "+this.lofteur.size());
-				this.go();
+				//System.out.println("mvt en ("+b.h+","+b.w+") il reste "+b.energie+" energie");
+				//System.out.println("nombre de particitant: "+this.lofteur.size());
+				//this.go();
 			}
 			else{
 			//mettre une fin
-			System.out.println("fin de la partie");
+			System.out.println("fin de la partie");r=0;
 			}
+		return r;
 	}
 	
 	public int occupe(int a,int b){

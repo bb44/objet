@@ -28,7 +28,8 @@ public abstract class beta extends food {
 		//0 acces autorise 
 		// 1 verifier l'energie 
 		for(int i=0; i<l.lofteur.size();i++){
-			if((l.lofteur.get(i).h==a)&&(l.lofteur.get(i).w==b)){p=p+1;j=i;System.out.println("neuneu en ("+a+","+b+")");}
+			if((l.lofteur.get(i).h==a)&&(l.lofteur.get(i).w==b)){p=p+1;j=i;//System.out.println("neuneu en ("+a+","+b+")");
+			}
 		}
 		if(p>1){r=0;}
 		if(p==1){

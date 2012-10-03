@@ -64,10 +64,12 @@ public class erratique extends beta {
 		for(int i=0;i<l.nourriture.size();i++){
 			if((l.nourriture.get(i).h==h)&&(l.nourriture.get(i).w==w)){
 				int a=(int)(Math.random()*(l.nourriture.get(i).quantite)+1);
-				System.out.println("quantite consommer: "+a+" energie: "+l.nourriture.get(i).energie);
+				//System.out.println("quantite consommer: "+a+" energie: "+l.nourriture.get(i).energie);
 				this.energie=this.energie+l.nourriture.get(i).consommer(a);
-				if(l.nourriture.get(i).quantite==0){l.nourriture.remove(i);System.out.println("quantite consommer: totalite");}
-				else{System.out.println("nourriture restante: "+l.nourriture.get(i).quantite);}
+				if(l.nourriture.get(i).quantite==0){l.nourriture.remove(i);//System.out.println("quantite consommer: totalite");
+				}
+				else{//System.out.println("nourriture restante: "+l.nourriture.get(i).quantite);
+				}
 			}
 		}
 		//reproduction
@@ -83,7 +85,7 @@ public class erratique extends beta {
 		}
 		//creer un nouveau neuneu si p=1
 		if(p==1){
-			System.out.println("nouveau neuneu");
+			//System.out.println("nouveau neuneu");
 			l.add(new vorace(l,this.h,this.w,10));
 		}
 	}
