@@ -33,7 +33,7 @@ public class Loft   {
 		int e=1;
 		for(int i=0;i<taille;i++){
 			for(int j=0;j<taille;j++){
-				if((Math.random())<p){
+				if((Math.random())<p*e){
 					//mettre de la nourriture non humaine dans la case
 					int r=1;
 					if((Math.random())>0.8){r=2;}
@@ -71,14 +71,16 @@ String a;
 	
 	public void go(){
 		//on compte le nombre de joueur
-		if(this.lofteur.size()>1){
+		if(this.lofteur.size()>0){
 			//retirer le premier joueur
 			
 				beta b = this.lofteur.get(0);
+				System.out.println("tour de "+b.genre);
 				this.lofteur.remove(0);
-				b.deplacer();
-				if(b.energie>0){this.lofteur.add(b);}
+				if(b.energie>0){b.deplacer();}else{	System.out.println("KIA");}
+				if(b.energie>0){b.action();this.lofteur.add(b);}else{	System.out.println("KIA");}
 				System.out.println("mvt en ("+b.h+","+b.w+") il reste "+b.energie+" energie");
+				System.out.println("nombre de particitant: "+this.lofteur.size());
 				this.go();
 			}
 			else{

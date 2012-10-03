@@ -30,7 +30,7 @@ public class vorace extends erratique{
 			if(y>0){y1=w-1;}
 			System.out.println("position souhaitée: "+x1+","+y1);
 			if(this.accessible(x1,y1)==1){
-				h=x1;w=y1;n=1;
+				h=x1;w=y1;n=1;this.energie=this.energie-1;
 			}
 		}
 		if(n==0){
@@ -39,15 +39,14 @@ public class vorace extends erratique{
 		if(h==0){a6=0;a7=0;a8=0;}
 		if(w==l.taille-1){a8=0;a5=0;a3=0;}
 		if(h==l.taille-1){a1=0;a2=0;a3=0;}
-		
-		if(a1!=0){a1=this.accessible(h-1,w-1);}
-		if(a2!=0){a2=this.accessible(h-1,w);}
-		if(a3!=0){a3=this.accessible(h-1,w+1);}
+		if(a1!=0){a1=this.accessible(h+1,w-1);}
+		if(a2!=0){a2=this.accessible(h+1,w);}
+		if(a3!=0){a3=this.accessible(h+1,w+1);}
 		if(a4!=0){a4=this.accessible(h,w-1);}
 		if(a5!=0){a5=this.accessible(h,w+1);}
-		if(a6!=0){a6=this.accessible(h+1,w-1);}
-		if(a7!=0){a7=this.accessible(h+1,w);}
-		if(a8!=0){a8=this.accessible(h+1,w+1);}
+		if(a6!=0){a6=this.accessible(h-1,w-1);}
+		if(a7!=0){a7=this.accessible(h-1,w);}
+		if(a8!=0){a8=this.accessible(h-1,w+1);}
 		System.out.println("a1="+a1+" a2="+a2+" a3="+a3+" a4="+a4+" a5="+a5+" a6="+a6+" a7="+a7+" a8="+a8);
 		int somme=a1+a2+a3+a4+a5+a6+a7+a8;
 		
@@ -89,5 +88,33 @@ public class vorace extends erratique{
 		}
 
 return r;
+	}
+	public void action(){
+		//si il y a de la bouffe en prendre une quantite aleatoire
+		for(int i=0;i<l.nourriture.size();i++){
+			if((l.nourriture.get(i).h==h)&&(l.nourriture.get(i).w==w)){
+				int a=(int)(Math.random()*(l.nourriture.get(i).quantite)+1);
+				System.out.println("quantite consommer: "+a+" energie: "+l.nourriture.get(i).energie);
+				this.energie=this.energie+l.nourriture.get(i).consommer(a);
+				if(l.nourriture.get(i).quantite==0){l.nourriture.remove(i);System.out.println("quantite consommer: totalite");}
+				else{System.out.println("nourriture restante: "+l.nourriture.get(i).quantite);}
+			}
+		}
+		//reproduction
+		int p=0;
+		if(this.energie>10){
+		for(int j=0;j<l.lofteur.size();j++){
+			if((l.lofteur.get(j).h==h)&&(l.lofteur.get(j).w==w)&&(p==0)){
+				this.energie=this.energie-10;
+				l.lofteur.get(j).energie=l.lofteur.get(j).energie-10;
+				p=1;
+			}
+		}	
+		}
+		//creer un nouveau neuneu si p=1
+		if(p==1){
+			System.out.println("nouveua neuneu");
+			l.add(new cannibale(l,this.h,this.w,10));
+		}
 	}
 }

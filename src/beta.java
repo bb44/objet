@@ -1,8 +1,6 @@
 import java.util.*;
 
 public abstract class beta extends food {
-	public int h;
-	public int w;
 	public Vector<Integer> regime=new Vector();
 	public Loft l;
 	public String genre="";
@@ -14,8 +12,37 @@ public abstract class beta extends food {
 		h=h1;
 		w=w1;
 		energie=e;
+		
 	}
+	
+	public int accessible(int a,int b){//a faire
+		int r=1;
+		if(a<0){r=0;}
+		if(a>l.taille-1){r=0;}
+		if(b<0){r=0;}
+		if(b>l.taille-1){r=0;}
+		return r;
+	}
+	
+	public void cases(int i){
+		if(i==0){h=h+1;w=w-1;}
+		if(i==1){h=h+1;}
+		if(i==2){h=h+1;w=w+1;}
+		if(i==3){w=w-1;}
+		if(i==4){w=w+1;}
+		if(i==5){h=h-1;w=w-1;}
+		if(i==6){h=h-1;}
+		if(i==7){h=h-1;w=w+1;}
+	}
+	
+	public int Typage(){
+		return 1;
+	}
+	
 	public void deplacer(){
+		System.out.println("indefini");
+	}
+	public void action(){
 		System.out.println("indefini");
 	}
 	
@@ -40,5 +67,14 @@ public abstract class beta extends food {
 				(int)(Math.random()*l.taille),
 				4);l.add(b);}
 		
+	}
+	public int consommer(int q){
+		int r=0;
+		if((q>0)&&(q<quantite+1)){
+			r=q*energie;quantite=0;
+			this.energie=-1;
+		}
+		
+		return r;
 	}
 }

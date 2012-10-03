@@ -56,9 +56,10 @@ public class Saison1 {
 		loft.AfficherFood();
 		
 		//2 erratique en place
-		loft.add(new erratique(loft,0,0,10));
-		loft.add(new erratique(loft,tailleLoft-1,tailleLoft-1,10));
-		loft.add(new vorace(loft,0,tailleLoft-1,10));
+		//loft.add(new erratique(loft,0,0,30));
+		//loft.add(new erratique(loft,tailleLoft-1,tailleLoft-1,10));
+		loft.add(new lapin(loft,0,tailleLoft-1,30));
+		loft.add(new lapin(loft,0,0,30));
 		loft.go();
 	}
 	
