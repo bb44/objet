@@ -83,7 +83,7 @@ public class erratique extends beta {
 		}
 		//creer un nouveau neuneu si p=1
 		if(p==1){
-			System.out.println("nouveua neuneu");
+			System.out.println("nouveau neuneu");
 			l.add(new vorace(l,this.h,this.w,10));
 		}
 	}

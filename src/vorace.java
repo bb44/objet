@@ -15,7 +15,7 @@ public class vorace extends erratique{
 		int n=0;
 		//on parcours la nourriture pour trouver le site le plus proche
 		int e=this.ProximiterFood();
-		
+		System.out.println("food:"+e);
 		if(e>-1){
 			System.out.println("recherche");
 			int x=h-l.nourriture.get(e).h;
@@ -74,13 +74,11 @@ public class vorace extends erratique{
 		}
 	}
 	public int ProximiterFood(){//si renvoi -1 alors il n'y a plus de nourriture
-	int i,r=-1,d2,a,dist2=(l.taille)*(l.taille);
-	
+	int i,r=-1,d2,dist2=2*(l.taille+1)*(l.taille+1);
 		for(i=0;i<l.nourriture.size();i++){
-			a=l.nourriture.get(i).w-this.w;
+			
 		
 		d2=((l.nourriture.get(i).h-this.h)*(l.nourriture.get(i).h-this.h)+(l.nourriture.get(i).w-this.w)*(l.nourriture.get(i).w-this.w));
-		
 		if((d2<dist2)&&(d2!=0)){
 			dist2=d2;
 			r=i;
@@ -113,7 +111,7 @@ return r;
 		}
 		//creer un nouveau neuneu si p=1
 		if(p==1){
-			System.out.println("nouveua neuneu");
+			System.out.println("nouveau neuneu");
 			l.add(new cannibale(l,this.h,this.w,10));
 		}
 	}

@@ -9,6 +9,25 @@ public class cannibale extends vorace {
 		genre="cannibale";	
 		}
 	
+	public int accessible(int a,int b){//a faire
+		int r=1,p=0,j=0;
+		//s'assurer que la case est dans le loft
+		if(a<0){r=0;}
+		if(a>l.taille-1){r=0;}
+		if(b<0){r=0;}
+		if(b>l.taille-1){r=0;}
+		//si la case est occupee verifier qu'on peut y aller
+		//on compte le nombre de personne sur la case
+		//au dessus de 2 acces impossible (il sont trop fort impossible d'etre discret)
+		//0 acces autorise 
+		// 
+		for(int i=0; i<l.lofteur.size();i++){
+			if((l.lofteur.get(i).h==a)&&(l.lofteur.get(i).w==b)){p=p+1;j=i;System.out.println("neuneu en ("+a+","+b+")");}
+		}
+		if(p>1){r=0;}
+		
+		return r;
+	}
 	public void deplacer(){
 		System.out.println("deplacement depuis ("+h+","+w+")");
 		int n=0;
@@ -83,7 +102,7 @@ public class cannibale extends vorace {
 	}
 	
 	public int ProximiterFood(){//ajouter les autres neuneux
-	int i,r=-1,d2,dist2=(l.taille)*(l.taille);
+	int i,r=-1,d2,dist2=2*(l.taille)*(l.taille);
 	Vector<food> z=new Vector();
 	//creer un tableau de nourriture mixte
 	for(i=0;i<l.nourriture.size();i++){
@@ -141,7 +160,7 @@ return r;
 		}
 		//creer un nouveau neuneu si p=1
 		if(p==1){
-			System.out.println("nouveua neuneu");
+			System.out.println("nouveau neuneu");
 			l.add(new cannibale(l,this.h,this.w,10));
 		}
 	}

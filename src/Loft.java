@@ -33,7 +33,7 @@ public class Loft   {
 		int e=1;
 		for(int i=0;i<taille;i++){
 			for(int j=0;j<taille;j++){
-				if((Math.random())<p*e){
+				if((Math.random())<p){
 					//mettre de la nourriture non humaine dans la case
 					int r=1;
 					if((Math.random())>0.8){r=2;}
@@ -69,9 +69,15 @@ String a;
 	}
 }
 	
+	public void AfficherLofteur(){
+		for(int i=0;i<this.lofteur.size();i++){
+			System.out.println(this.lofteur.get(i).genre+" en  ("+this.lofteur.get(i).h+","+this.lofteur.get(i).w+")");
+		}
+	}
+	
 	public void go(){
 		//on compte le nombre de joueur
-		if(this.lofteur.size()>0){
+		if(this.lofteur.size()>1){
 			//retirer le premier joueur
 			
 				beta b = this.lofteur.get(0);
@@ -87,5 +93,32 @@ String a;
 			//mettre une fin
 			System.out.println("fin de la partie");
 			}
+	}
+	
+	public int occupe(int a,int b){
+		int r=1;
+		if(lofteur.size()!=0){
+		for(int i=0;i<lofteur.size();i++){
+			if((lofteur.get(i).h==a)&&(lofteur.get(i).w==b)){r=0;}
+		}
+	}
+		return r;
+	}
+	
+	public void mettreLofteur(int a){
+		int n=a;int i,j;
+		while(n>0){
+		i=(int)(Math.random()*taille);
+		j=(int)(Math.random()*taille);
+		if(this.occupe(i, j)==1){n=n-1;
+			double f=Math.random();
+			if(f<0.25){this.add(new erratique(this,i,j,30));}
+			else{if(f<0.5){this.add(new vorace(this,i,j,30));}
+			else{if(f<0.75){this.add(new cannibale(this,i,j,30));}
+			else{this.add(new lapin(this,i,j,30));}
+			}
+			}
+		}
+	}
 	}
 }

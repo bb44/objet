@@ -16,7 +16,7 @@ public class lapin extends beta{
 		int e=this.ProximiterBeta();
 		
 		if(e>-1){
-			System.out.println("recherche");
+			System.out.println("recherche "+l.lofteur.get(e).genre);
 			int x=h-l.lofteur.get(e).h;
 			int y=w-l.lofteur.get(e).w;
 			System.out.println("vecteur: "+x+","+y);
@@ -38,14 +38,14 @@ public class lapin extends beta{
 		if(h==0){a6=0;a7=0;a8=0;}
 		if(w==l.taille-1){a8=0;a5=0;a3=0;}
 		if(h==l.taille-1){a1=0;a2=0;a3=0;}
-		if(a1!=0){a1=this.accessible(h+1,w-1);}
-		if(a2!=0){a2=this.accessible(h+1,w);}
-		if(a3!=0){a3=this.accessible(h+1,w+1);}
-		if(a4!=0){a4=this.accessible(h,w-1);}
-		if(a5!=0){a5=this.accessible(h,w+1);}
-		if(a6!=0){a6=this.accessible(h-1,w-1);}
-		if(a7!=0){a7=this.accessible(h-1,w);}
-		if(a8!=0){a8=this.accessible(h-1,w+1);}
+		if(a1!=0){a1=this.accessible(h+1,w-1);System.out.println("a1="+a1);}
+		if(a2!=0){a2=this.accessible(h+1,w);System.out.println("a2="+a2);}
+		if(a3!=0){a3=this.accessible(h+1,w+1);System.out.println("a3="+a3);}
+		if(a4!=0){a4=this.accessible(h,w-1);System.out.println("a4="+a4);}
+		if(a5!=0){a5=this.accessible(h,w+1);System.out.println("a5="+a5);}
+		if(a6!=0){a6=this.accessible(h-1,w-1);System.out.println("a6="+a6);}
+		if(a7!=0){a7=this.accessible(h-1,w);System.out.println("a7="+a7);}
+		if(a8!=0){a8=this.accessible(h-1,w+1);System.out.println("a8="+a8);}
 		System.out.println("a1="+a1+" a2="+a2+" a3="+a3+" a4="+a4+" a5="+a5+" a6="+a6+" a7="+a7+" a8="+a8);
 		int somme=a1+a2+a3+a4+a5+a6+a7+a8;
 		
@@ -94,7 +94,7 @@ return r;
 		for(int i=0;i<l.nourriture.size();i++){
 			if((l.nourriture.get(i).h==h)&&(l.nourriture.get(i).w==w)){
 				int a=(int)(Math.random()*(l.nourriture.get(i).quantite)+1);
-				System.out.println("quantite consommer: "+a+" energie: "+l.nourriture.get(i).energie);
+				System.out.println("quantite consommer: "+a+"/"+l.nourriture.get(i).quantite);
 				this.energie=this.energie+l.nourriture.get(i).consommer(a);
 				if(l.nourriture.get(i).quantite==0){l.nourriture.remove(i);System.out.println("quantite consommer: totalite");}
 				else{System.out.println("nourriture restante: "+l.nourriture.get(i).quantite);}
@@ -113,7 +113,7 @@ return r;
 		}
 		//creer un nouveau neuneu si p=1
 		if(p==1){
-			System.out.println("nouveua neuneu");
+			System.out.println("nouveau neuneu");
 			l.add(new lapin(l,this.h,this.w,10));
 		}
 	}

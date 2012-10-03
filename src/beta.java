@@ -16,11 +16,24 @@ public abstract class beta extends food {
 	}
 	
 	public int accessible(int a,int b){//a faire
-		int r=1;
+		int r=1,p=0,j=0;
+		//s'assurer que la case est dans le loft
 		if(a<0){r=0;}
 		if(a>l.taille-1){r=0;}
 		if(b<0){r=0;}
 		if(b>l.taille-1){r=0;}
+		//si la case est occupee verifier qu'on peut y aller
+		//on compte le nombre de personne sur la case
+		//au dessus de 2 acces impossible
+		//0 acces autorise 
+		// 1 verifier l'energie 
+		for(int i=0; i<l.lofteur.size();i++){
+			if((l.lofteur.get(i).h==a)&&(l.lofteur.get(i).w==b)){p=p+1;j=i;System.out.println("neuneu en ("+a+","+b+")");}
+		}
+		if(p>1){r=0;}
+		if(p==1){
+			if((energie<11)||(l.lofteur.get(j).energie<11)){r=0;}
+		}
 		return r;
 	}
 	

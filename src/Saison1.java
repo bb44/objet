@@ -52,14 +52,16 @@ public class Saison1 {
 		ZoneGraphique zone = new ZoneGraphique("Mon premier loft");
 		Loft loft = new Loft(tailleLoft,zone);
 		loft.remplissageAleatoire(0.1f);
+		loft.mettreLofteur(nombreLofteurs);
 		System.out.println(loft.nourriture.size()+","+loft.nourriture.get(0).h+","+loft.nourriture.get(0).w);
 		loft.AfficherFood();
-		
+		loft.AfficherLofteur();
+		/*
 		//2 erratique en place
-		//loft.add(new erratique(loft,0,0,30));
-		//loft.add(new erratique(loft,tailleLoft-1,tailleLoft-1,10));
-		loft.add(new lapin(loft,0,tailleLoft-1,30));
-		loft.add(new lapin(loft,0,0,30));
+		loft.add(new erratique(loft,0,0,30));
+		loft.add(new vorace(loft,tailleLoft-1,tailleLoft-1,30));
+		loft.add(new cannibale(loft,0,tailleLoft-1,30));
+		loft.add(new lapin(loft,tailleLoft-1,0,30));*/
 		loft.go();
 	}
 	
