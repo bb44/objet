@@ -12,7 +12,10 @@ public class Panneau extends JPanel {
       int x = this.getWidth();
       int y = this.getHeight();
       g.setColor(Color.GRAY);
-     if(n>-1) {g.setColor(Color.red);}
+     if(n==0) {g.setColor(Color.blue);}
+     if(n==1) {g.setColor(Color.red);}
+     if(n==2) {g.setColor(Color.green);}
+      
       g.fillRect(0, 0, this.getWidth(), this.getHeight()); 
      if(p>0){
       g.setColor(Color.yellow);  

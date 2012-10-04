@@ -10,6 +10,7 @@ public class food {
 	public food(int x,int y,int t){
 		h=x;
 		w=y;
+		type=t;
 		if(t==1){
 		quantite=5;energie=2;}
 		if(t==2){

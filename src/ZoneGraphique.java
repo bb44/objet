@@ -1,13 +1,13 @@
 
 
-import java.awt.BorderLayout;
+//import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.Graphics;
+//import java.awt.Graphics;
 public class ZoneGraphique extends JFrame{
 
 	public Loft l;
@@ -55,7 +55,6 @@ public class ZoneGraphique extends JFrame{
 		}
 	      //matrice lofteur
 		int[][] matrice2=new int[l.taille][l.taille];
-		System.out.println("part: "+l.lofteur.size());
 	//initialisation
 	for(int i=0;i<l.taille;i++){
 		for(int j=0;j<l.taille;j++){
@@ -80,10 +79,11 @@ public class ZoneGraphique extends JFrame{
 	    	    gbc.gridy = j;
 	    	    //on ajoute la cellule au conteneur
 	    	    Panneau cell=new Panneau();
+	    	    //JPanel cell=new JPanel();
 	    	    cell.n=matrice[j][i];
-	    	    cell.p=matrice2[j][i];
+	    	   cell.p=matrice2[j][i];
 	    	    cell.setPreferredSize(new Dimension(40, 25));	
-	    	    content.add(cell, gbc);
+	    	   content.add(cell, gbc);
 	        }
 	    }
 	      //On ajoute le conteneur

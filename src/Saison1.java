@@ -24,12 +24,7 @@ public class Saison1 {
 		loft.AfficherFood();
 		loft.AfficherLofteur();
 		ZoneGraphique zone = new ZoneGraphique(loft);
-		/*
-		//2 erratique en place
-		loft.add(new erratique(loft,0,0,30));
-		loft.add(new vorace(loft,tailleLoft-1,tailleLoft-1,30));
-		loft.add(new cannibale(loft,0,tailleLoft-1,30));
-		loft.add(new lapin(loft,tailleLoft-1,0,30));*/
+		
 		int r=1;
 		while(r==1){
 		 r=loft.go();
