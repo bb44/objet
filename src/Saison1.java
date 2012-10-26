@@ -1,7 +1,7 @@
 
 
 public class Saison1 {
-
+//
 	public static int nombreLofteurs = 4;
 	public static int tailleLoft = 30;
 	public static float proportionErratique = .75f;
